@@ -24,10 +24,4 @@ public class SubCategory extends BaseEntity {
                           CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "fk_category_id")
     private Category category;
-
-    @OneToMany(mappedBy = "subCategory",cascade = {CascadeType.MERGE,CascadeType.DETACH,
-                                                    CascadeType.PERSIST,CascadeType.REFRESH})
-    private Set<Products> uniqueProducts;
-
-
 }

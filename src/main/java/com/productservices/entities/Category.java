@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,19 +23,5 @@ public class Category extends BaseEntity{
 
     @Column(name = "type")
     private String categoryType;
-
-    @OneToMany(mappedBy = "category",cascade = {CascadeType.MERGE,CascadeType.DETACH,
-                                                CascadeType.PERSIST,CascadeType.REFRESH})
-    private Set<SubCategory> uniqueSubCategories;
-
-
-    // for bi-directional mapping of sub category
-    public void add(SubCategory tempSubCategory){
-        if (tempSubCategory == null) {
-            uniqueSubCategories = new HashSet<>();
-        }
-        uniqueSubCategories.add(tempSubCategory);
-        tempSubCategory.setCategory(this);
-    }
 
 }
