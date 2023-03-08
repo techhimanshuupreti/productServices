@@ -1,47 +1,38 @@
 package com.productservices.entities;
 
 
+import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Date;
 
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "products", uniqueConstraints = {@UniqueConstraint(columnNames = {"product_Id"})})
-public class Products implements Serializable {
+@Table(name = "products")
+public class Products extends BaseEntity {
     @Serial
-    private static final long serialVersionUID = 6255026696749276508L;
+    private static final long serialVersionUID = 6255026696749276501L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", unique = true, nullable = false, insertable = false, updatable = false)
-    private String productId;
+    @Column(name = "cmp_name")
+    private String companyName;
 
-    @Column(name = "product_name")
-    private String productName;
+    @Column(name = "prod_number")
+    private String productNumbers;
 
-    @Column(name = "description")
-    private String productDescription;
+    @Column(name = "distributor_supplier_name")
+    private String distributorSupplierName;
+
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,
+                          CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "prod_sub_category_id")
+    private SubCategory subCategory;
 
     private double price;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private Date createdAt;
-
-    @UpdateTimestamp
-    @Column(nullable = false)
-    private Date updatedAt;
 
 }

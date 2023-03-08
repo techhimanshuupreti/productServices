@@ -1,48 +1,42 @@
 package com.productservices.entities;
 
 
+import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "category", uniqueConstraints = {@UniqueConstraint(columnNames = {"category_id"})})
-public class Category implements Serializable {
+@Table(name = "categories")
+public class Category extends BaseEntity{
 
     @Serial
     private static final long serialVersionUID = 4507893354738057987L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id", unique = true, nullable = false, insertable = false, updatable = false)
-    private String categoryId;
-
-    @Column(name = "category_name")
-    private String categoryName;
 
     @Column(name = "type")
     private String categoryType;
 
-    @Column(name = "description")
-    private String descriptions;
+    @OneToMany(mappedBy = "category",cascade = {CascadeType.MERGE,CascadeType.DETACH,
+                                                CascadeType.PERSIST,CascadeType.REFRESH})
+    private Set<SubCategory> uniqueSubCategories;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private Date createdAt;
 
-    @UpdateTimestamp
-    @Column(nullable = false)
-    private Date updatedAt;
+    // for bi-directional mapping of sub category
+    public void add(SubCategory tempSubCategory){
+        if (tempSubCategory == null) {
+            uniqueSubCategories = new HashSet<>();
+        }
+        uniqueSubCategories.add(tempSubCategory);
+        tempSubCategory.setCategory(this);
+    }
 
 }

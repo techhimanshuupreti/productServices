@@ -1,44 +1,33 @@
 package com.productservices.entities;
 
+import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Set;
 
 @Setter
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Builder
-@Table(name = "sub_category", uniqueConstraints = {@UniqueConstraint(columnNames = {"sub_category_id"})})
-public class SubCategory implements Serializable {
+@Entity
+@Table(name = "sub_categories")
+public class SubCategory extends BaseEntity {
+
     @Serial
     private static final long serialVersionUID = 5060514047181314347L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sub_category_id", unique = true, nullable = false, insertable = false, updatable = false)
-    private String subCategoryId;
 
-    @Column(name = "sub_category_name")
-    private String subCategoryName;
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,
+                          CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "fk_category_id")
+    private Category category;
 
-    @Column(name = "description")
-    private String description;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private Date createdAt;
-
-    @UpdateTimestamp
-    @Column(nullable = false)
-    private Date updatedAt;
+    @OneToMany(mappedBy = "subCategory",cascade = {CascadeType.MERGE,CascadeType.DETACH,
+                                                    CascadeType.PERSIST,CascadeType.REFRESH})
+    private Set<Products> uniqueProducts;
 
 
 }
