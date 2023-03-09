@@ -4,8 +4,6 @@ import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
-
 @Setter
 @Getter
 @Builder
@@ -29,5 +27,5 @@ public class Stock extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "stock_prod_id")
-    private Products products;
+    private Product product;
 }

@@ -10,12 +10,10 @@ import java.io.Serializable;
 
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "products",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
-public class Products extends BaseEntity {
+public class Product extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 6255026696749276501L;
 

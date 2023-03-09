@@ -2,27 +2,23 @@ package com.productservices.entities;
 
 
 import com.productservices.entities.base.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.*;
 
 import java.io.Serial;
-import java.util.HashSet;
-import java.util.Set;
 
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "categories",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
-public class Category extends BaseEntity{
+@Table(name = "categories", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+public class Category extends BaseEntity {
 
     @Serial
-    private static final long serialVersionUID = 4507893354738057987L;
-
-    @Column(name = "type")
-    private String categoryType;
+    private static final long serialVersionUID = -2345644253962913010L;
 
     @Column(name = "name")
     private String name;
@@ -32,4 +28,5 @@ public class Category extends BaseEntity{
 
     @Column(name = "short_description")
     private String shortDescriptions;
+
 }
