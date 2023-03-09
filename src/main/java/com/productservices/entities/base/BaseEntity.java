@@ -32,13 +32,4 @@ public abstract class BaseEntity implements Serializable {
     @Column(nullable = false)
     private Date updatedAt;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "description")
-    private String descriptions;
-
-    @Column(name = "short_description")
-    private String shortDescriptions;
-
 }

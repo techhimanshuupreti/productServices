@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "sub_categories")
+@Table(name = "sub_categories",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class SubCategory extends BaseEntity {
 
     @Serial
@@ -24,4 +24,13 @@ public class SubCategory extends BaseEntity {
                           CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "fk_category_id")
     private Category category;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String descriptions;
+
+    @Column(name = "short_description")
+    private String shortDescriptions;
 }

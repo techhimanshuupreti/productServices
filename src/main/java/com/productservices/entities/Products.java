@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "products")
+@Table(name = "products",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Products extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 6255026696749276501L;
@@ -34,5 +34,14 @@ public class Products extends BaseEntity {
     private SubCategory subCategory;
 
     private double price;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String descriptions;
+
+    @Column(name = "short_description")
+    private String shortDescriptions;
 
 }

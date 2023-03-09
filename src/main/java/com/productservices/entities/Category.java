@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "categories")
+@Table(name = "categories",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Category extends BaseEntity{
 
     @Serial
@@ -24,4 +24,12 @@ public class Category extends BaseEntity{
     @Column(name = "type")
     private String categoryType;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String descriptions;
+
+    @Column(name = "short_description")
+    private String shortDescriptions;
 }
