@@ -1,21 +1,27 @@
 ## Server port configuration
 server:
   port: 9010
+#  error:
+#      whitelabel:
+#        enabled: false
 
-## Spring Database configure by Datasource like MySql
+## Spring Database configures by Datasource like MySql
 Spring:
   datasource:
     name: product_services
     url: jdbc:mysql://localhost:3306/product_services
-    username: root
-    password: BDSh@123
+    username: crossborder
+    password: Chandan@12345
     driver-class-name: com.mysql.cj.jdbc.Driver
   Jpa:
     properties:
       hibernate:
-        dialect:  org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     hibernate.ddl-auto: update
     show-sql: true
-
-
+    ## for spring security userName and password config
+#  security:
+#    user:
+#      name: upreti
+#      password: upreti
