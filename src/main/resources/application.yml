@@ -20,6 +20,10 @@ Spring:
         format_sql: true
     hibernate.ddl-auto: update
     show-sql: true
+
+#  mvn:
+#    pathmatch:
+#      matching-strategy: ANT_PATH_METCHER
     ## for spring security userName and password config
 #  security:
 #    user:
