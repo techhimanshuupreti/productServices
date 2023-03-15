@@ -21,6 +21,18 @@ Spring:
     hibernate.ddl-auto: update
     show-sql: true
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: '/v3/api-docs'
+  swagger-ui:
+    path: '/swagger-ui'
+    config-url: '/ingress-path/v3/api-docs/swagger-config'
+    url: '/ingress-path/v3/api-docs'
+    doc-expansion: none
+    disable-swagger-default-url: true
+
+
 #  mvn:
 #    pathmatch:
 #      matching-strategy: ANT_PATH_METCHER

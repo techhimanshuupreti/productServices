@@ -3,8 +3,6 @@ package com.productservices.controllers;
 import com.productservices.services.CategoryService;
 import com.productservices.dtos.CategoryDTO;
 import com.productservices.entities.Category;
-import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/category")
-@Api(
-        tags = "Account",
-        description = "All account Related APIs."
-)
 public class CategoryController {
 
     @Autowired

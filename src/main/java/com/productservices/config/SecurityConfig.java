@@ -11,7 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -30,14 +36,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        final String[] PUBLIC_URLS = {
+        final String[] excludeEndPoints = {
                 "/v3/api-docs",
                 "/v2/api-docs",
                 "/v1/api-docs",
                 "/swagger-resources/**",
                 "/swagger-ui/**",
                 "/webjars/**",
-                "/api/v1/category/**"
+                "/api/v1/category/**",
+                "/swagger-ui/index.html",
+                "/swagger-ui/index.html/**",
+                "/swagger-ui/index.html#/",
+                "/swagger-ui/index.html#/**"
+
         };
 
         /***
@@ -64,7 +75,7 @@ public class SecurityConfig {
 //                .authorizeHttpRequests()
 //                .anyRequest().authenticated()
                 .authorizeHttpRequests()
-                .requestMatchers(PUBLIC_URLS).permitAll()
+                .requestMatchers(excludeEndPoints).permitAll()
                 .and()
                 .formLogin(withDefaults());
         return http.build();
@@ -97,4 +108,15 @@ public class SecurityConfig {
     public PasswordEncoder getPassEncoded() {
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public CorsFilter corsFilter(){
+//        CorsConfiguration corsConfiguration = new CorsConfiguration();
+//        corsConfiguration.setAllowedOrigins(List.of("*"));
+//        corsConfiguration.setAllowedMethods(Arrays.asList("DELETE","PUT","PATCH","POST","GET"));
+//        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+//        corsConfiguration.setAllowCredentials(true);
+//        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
+//        return new CorsFilter(urlBasedCorsConfigurationSource);
+//    }
 }
