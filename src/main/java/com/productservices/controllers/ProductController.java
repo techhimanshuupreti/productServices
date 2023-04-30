@@ -16,22 +16,22 @@ public class ProductController {
     private ProductServices productServices;
 
     @PostMapping
-    public boolean save(ProductDTO productDTO){
+    public boolean save(ProductDTO productDTO) {
         return productServices.save(productDTO);
     }
 
     @GetMapping
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         return productServices.findAll();
     }
 
     @GetMapping("{id}")
-    public Product findOne(@PathVariable String id){
+    public Product findOne(@PathVariable String id) {
         return productServices.findOne(id);
     }
 
     @DeleteMapping("{id}")
-    public boolean remove(@PathVariable String id){
+    public boolean remove(@PathVariable String id) {
         return productServices.remove(id);
     }
 

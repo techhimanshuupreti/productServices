@@ -16,22 +16,22 @@ public class SubCategoryController {
     private SubCategoryService subCategoryService;
 
     @PostMapping
-    public boolean save(SubCategoryDTO subCategoryDTO){
+    public boolean save(SubCategoryDTO subCategoryDTO) {
         return subCategoryService.save(subCategoryDTO);
     }
 
     @GetMapping
-    public List<SubCategory> findAll(){
+    public List<SubCategory> findAll() {
         return subCategoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public SubCategory findOne(@PathVariable String id){
+    public SubCategory findOne(@PathVariable String id) {
         return subCategoryService.findOne(id);
     }
 
     @DeleteMapping("{id}")
-    public boolean remove(@PathVariable String id){
+    public boolean remove(@PathVariable String id) {
         return subCategoryService.remove(id);
     }
 }

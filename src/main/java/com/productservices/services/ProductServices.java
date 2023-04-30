@@ -21,7 +21,7 @@ public class ProductServices {
     private SubCategoryService subCategoryService;
 
     @Transactional
-    public boolean save(ProductDTO productDTO){
+    public boolean save(ProductDTO productDTO) {
 
         SubCategory subCategory = subCategoryService.findOne(productDTO.getSubCategoryId());
         if (subCategory == null) return false;
@@ -38,20 +38,20 @@ public class ProductServices {
         product.setDistributorSupplierName(productDTO.getDistributorSupplierName());
         productRepository.save(product);
         return true;
-        }
+    }
 
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
-    public Product findOne(String id){
-        if (id == null || id.isBlank() || id.isEmpty())  return null;
+    public Product findOne(String id) {
+        if (id == null || id.isBlank() || id.isEmpty()) return null;
 
         return productRepository.findById(id).orElseGet(null);
     }
 
-    public boolean remove(String id){
-        if (id == null || id.isBlank() || id.isEmpty())  return false;
+    public boolean remove(String id) {
+        if (id == null || id.isBlank() || id.isEmpty()) return false;
 
         productRepository.deleteById(id);
         return true;
