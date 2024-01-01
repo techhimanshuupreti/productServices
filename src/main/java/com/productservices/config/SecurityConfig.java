@@ -50,21 +50,10 @@ public class SecurityConfig {
                 "/swagger-ui/index.html#/**"
 
         };
+        
+        http.authorizeHttpRequests(authCustomizer -> authCustomizer.anyRequest()
+                .permitAll());
 
-        /***
-         * It is responsible for skip security filters of define endpoint
-         * by HttpSecurity with authorizeHttpRequests methods.
-         *
-         * If we add
-         * .authorizeHttpRequests()
-         *             .anyRequest().authenticated()
-         *             .and()
-         *  then all http request will authenticate with
-         *  authentication provider like
-         *  DAO, In memory DB, OAuth, LDAP
-         * */
-
-        http.authorizeHttpRequests().anyRequest().permitAll();
         return http.build();
     }
 
