@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<version>3.0.5</version>
+<!--		<version>3.0.5</version>-->
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<!--			<version>3.0.4</version>-->
+					<version>3.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.productservices</groupId>
@@ -68,7 +68,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-<!--				<version>${project.parent.version}</version>-->
+				<version>${project.parent.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>
