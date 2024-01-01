@@ -2,13 +2,13 @@ package com.productservices.entities;
 
 import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 @Setter
 @Getter
@@ -22,8 +22,8 @@ public class SubCategory extends BaseEntity {
     @Serial
     private static final long serialVersionUID = -6032856804657692513L;
 
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,
-                          CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "fk_category_id")
     private Category category;
 

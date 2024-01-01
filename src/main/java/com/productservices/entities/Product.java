@@ -3,16 +3,17 @@ package com.productservices.entities;
 
 import com.productservices.entities.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "products",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+@Table(name = "products", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Product extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 6255026696749276501L;
@@ -26,8 +27,8 @@ public class Product extends BaseEntity {
     @Column(name = "distributor_supplier_name")
     private String distributorSupplierName;
 
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,
-                          CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "prod_sub_category_id")
     private SubCategory subCategory;
 
