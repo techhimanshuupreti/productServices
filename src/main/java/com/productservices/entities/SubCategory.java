@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import java.io.Serial;
 import java.util.Objects;
 
 @Setter
@@ -18,9 +17,6 @@ import java.util.Objects;
         @UniqueConstraint(name = "uc_subcategory_name", columnNames = {"name"})
 })
 public class SubCategory extends BaseEntity {
-
-    @Serial
-    private static final long serialVersionUID = -6032856804657692513L;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH,
             CascadeType.PERSIST, CascadeType.REFRESH})

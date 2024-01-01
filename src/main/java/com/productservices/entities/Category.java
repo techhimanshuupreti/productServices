@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serial;
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -19,8 +17,6 @@ import java.io.Serial;
 @Table(name = "categories", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Category extends BaseEntity {
 
-    @Serial
-    private static final long serialVersionUID = -2345644253962913010L;
 
     @Column(name = "name")
     private String name;
