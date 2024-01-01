@@ -98,7 +98,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User
                 .withUsername("upreti")
-                .password("$2a$12$/.cJcgeRCEbt0iARRe7Q6utWXfZPsCCIEzkP8f58fDJAEkg3XE7I.")
+                .password("$2a$12$W6Aeip.6fzQmP/1bVGi7Q.pj6jhYQpVCKb6oE2lp3S6SL/fst3rWi")// upreti
                 .roles("USER").build();
 
         return new InMemoryUserDetailsManager(user);
