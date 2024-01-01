@@ -7,16 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serial;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
 @Table(name = "products", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Product extends BaseEntity {
-    @Serial
-    private static final long serialVersionUID = 6255026696749276501L;
 
     @Column(name = "cmp_name")
     private String companyName;
