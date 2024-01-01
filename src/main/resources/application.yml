@@ -11,7 +11,7 @@ Spring:
     name: product_services
     url: jdbc:mysql://localhost:3306/product_services
     username: root
-    password: Upreti@123
+    password: upreti
     driver-class-name: com.mysql.cj.jdbc.Driver
   Jpa:
     properties:
@@ -20,18 +20,6 @@ Spring:
         format_sql: false
     hibernate.ddl-auto: update
     show-sql: false
-
-springdoc:
-  api-docs:
-    enabled: true
-    path: '/v3/api-docs'
-  swagger-ui:
-    path: '/swagger-ui'
-    config-url: '/ingress-path/v3/api-docs/swagger-config'
-    url: '/ingress-path/v3/api-docs'
-    doc-expansion: none
-    disable-swagger-default-url: true
-
 
 #  mvn:
 #    pathmatch:

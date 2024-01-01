@@ -64,20 +64,7 @@ public class SecurityConfig {
          *  DAO, In memory DB, OAuth, LDAP
          * */
 
-        http
-                .csrf()
-                .disable()
-                .cors()
-                .disable()
-//                .authorizeHttpRequests((authorizeHttpRequests) ->
-//                        authorizeHttpRequests
-//                                .requestMatchers(PUBLIC_URLS).permitAll())
-//                .authorizeHttpRequests()
-//                .anyRequest().authenticated()
-                .authorizeHttpRequests()
-                .requestMatchers(excludeEndPoints).permitAll()
-                .and()
-                .formLogin(withDefaults());
+        http.authorizeHttpRequests().anyRequest().permitAll();
         return http.build();
     }
 
