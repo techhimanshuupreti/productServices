@@ -3,6 +3,7 @@ package com.productservices.services;
 import com.productservices.dtos.CategoryDTO;
 import com.productservices.entities.Category;
 import com.productservices.repositories.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,10 +12,10 @@ import java.util.Calendar;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public boolean save(CategoryDTO categoryDTO) {

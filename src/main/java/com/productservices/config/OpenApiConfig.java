@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         url = "https://product-service.com/main"
                 ),
                 description = "Product Service API Document",
-                title = "Ecommerce - Product Service",
+                title = "Product Service",
                 version = "1.0",
                 license = @License(
                         name = "pretty",

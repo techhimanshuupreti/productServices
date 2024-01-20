@@ -11,7 +11,7 @@ Spring:
     name: product_services
     url: jdbc:mysql://localhost:3306/product_services
     username: root
-    password: upreti@1956 # aws ec2
+    password: upreti # aws ec2
 #    password: upreti// local
     driver-class-name: com.mysql.cj.jdbc.Driver
   Jpa:

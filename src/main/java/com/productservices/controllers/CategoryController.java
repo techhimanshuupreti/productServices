@@ -3,6 +3,7 @@ package com.productservices.controllers;
 import com.productservices.dtos.CategoryDTO;
 import com.productservices.entities.Category;
 import com.productservices.services.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @GetMapping
     public List<Category> findAll() {

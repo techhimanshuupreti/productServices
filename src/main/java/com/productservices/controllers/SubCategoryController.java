@@ -3,6 +3,7 @@ package com.productservices.controllers;
 import com.productservices.dtos.SubCategoryDTO;
 import com.productservices.entities.SubCategory;
 import com.productservices.services.SubCategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/sub-category")
+@RequiredArgsConstructor
 public class SubCategoryController {
 
-    @Autowired
-    private SubCategoryService subCategoryService;
+    private final SubCategoryService subCategoryService;
 
     @PostMapping
-    public boolean save(SubCategoryDTO subCategoryDTO) {
+    public boolean save(@RequestBody SubCategoryDTO subCategoryDTO) {
         return subCategoryService.save(subCategoryDTO);
     }
 

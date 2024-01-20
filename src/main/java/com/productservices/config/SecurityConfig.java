@@ -11,15 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 
 /***
@@ -30,36 +22,52 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebMvc
 public class SecurityConfig {
 
+    private final String[] ENDPOINTS_WHITELIST = {
+            "/v3/api-docs",
+            "/v2/api-docs",
+            "/v1/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/api/v1/category/**",
+            "/api/v1/sub-category/**",
+            "/api/v1/product/**",
+            "/swagger-ui/index.html",
+            "/swagger-ui/index.html/**",
+            "/swagger-ui/index.html#/",
+            "/swagger-ui/index.html#/**"
+
+    };
+
     /***
      * It is responsible for config security filters, authenticate mechanize.
      * */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        final String[] excludeEndPoints = {
-                "/v3/api-docs",
-                "/v2/api-docs",
-                "/v1/api-docs",
-                "/swagger-resources/**",
-                "/swagger-ui/**",
-                "/webjars/**",
-                "/api/v1/category/**",
-                "/swagger-ui/index.html",
-                "/swagger-ui/index.html/**",
-                "/swagger-ui/index.html#/",
-                "/swagger-ui/index.html#/**"
+        http
+            .csrf().disable()
+            .cors().disable()
+            .authorizeHttpRequests(req ->  req.requestMatchers(ENDPOINTS_WHITELIST).permitAll()).authorizeHttpRequests().anyRequest().permitAll();
+//            .authorizeHttpRequests(req ->  req.requestMatchers(ENDPOINTS_WHITELIST)).authorizeHttpRequests().anyRequest().permitAll();
 
-        };
-        
-        http.authorizeHttpRequests(authCustomizer -> authCustomizer.anyRequest()
-                .permitAll());
+//        http
+//                .csrf().disable()
+//                .authorizeHttpRequests(authCustomizer -> authCustomizer.anyRequest()
+//                        .permitAll()).anonymous().and()
+//                .authorizeHttpRequests(req -> {
+//                    req.requestMatchers(ENDPOINTS_WHITELIST).permitAll()
+//                            .anyRequest().authenticated();
+//                })
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         return http.build();
     }
 
-    /***
-     * It is responsible for skip security filters of define endpoint by MVC Pattern.
-     * */
+    /*
+      It is responsible for skip security filters of define endpoint by MVC Pattern.
+      */
 /*  @Bean
   public WebSecurityCustomizer webSecurityCustomizer() {
     return (web) -> {
